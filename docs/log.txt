@@ -1,0 +1,45 @@
+2022-03-14T14:01:30.465+0800 I CONTROL    [initandlisten] mongosqld starting: version=v2.14.4 pid=11364 host=h2.corp.sz.gene.com
+2022-03-14T14:01:30.465+0800 I CONTROL    [initandlisten] git version: df0cf0b57e9aac0ab6d545eee0d4451d11d0c6e9
+2022-03-14T14:01:30.465+0800 I CONTROL    [initandlisten] OpenSSL version OpenSSL 1.0.1e-fips 11 Feb 2013 (built with OpenSSL 1.0.1e 11 Feb 2013)
+2022-03-14T14:01:30.465+0800 I CONTROL    [initandlisten] options: {systemLog: {path: "/var/log/mongosqld.log"}, net: {bindIp: [0.0.0.0], port: 3311}, mongodb: {net: {uri: "mongodb://root:123456@127.0.0.1:27017/?connect=direct"}}}
+2022-03-14T14:01:30.465+0800 I CONTROL    [initandlisten] ** WARNING: Access control is not enabled for mongosqld.
+2022-03-14T14:01:30.465+0800 I CONTROL    [initandlisten]
+--mongo-uri may not contain any authentication information
+
+mysql -h127.0.0.1 -uroot -p -P3311
+Enter password:
+ERROR 1759 (HY000): ssl is required when using cleartext authentication
+
+./bin/mongosqld --auth --sslMode=disabled --mongo-uri mongodb://127.0.0.1:27017 --mongo-username=root --mongo-password=123456 --addr 0.0.0.0:3311
+2022-03-14T14:49:14.923+0800 I CONTROL    [initandlisten] mongosqld starting: version=v2.14.4 pid=13637 host=h2.corp.sz.gene.com
+2022-03-14T14:49:14.923+0800 I CONTROL    [initandlisten] git version: df0cf0b57e9aac0ab6d545eee0d4451d11d0c6e9
+2022-03-14T14:49:14.923+0800 I CONTROL    [initandlisten] OpenSSL version OpenSSL 1.0.1e-fips 11 Feb 2013 (built with OpenSSL 1.0.1e 11 Feb 2013)
+2022-03-14T14:49:14.923+0800 I CONTROL    [initandlisten] options: {net: {bindIp: [0.0.0.0], port: 3311}, security: {enabled: true}, mongodb: {net: {uri: "mongodb://127.0.0.1:27017", auth: {username: "root", password: "<protected>"}}}}
+2022-03-14T14:49:14.930+0800 I NETWORK    [initandlisten] waiting for connections at [::]:3311
+2022-03-14T14:49:14.930+0800 I NETWORK    [initandlisten] waiting for connections at /tmp/mysql.sock
+2022-03-14T14:49:14.938+0800 I SCHEMA     [sampler] sampling MongoDB for schema...
+2022-03-14T14:49:14.944+0800 I SCHEMA     [sampler] mapped schema for 2 namespaces: "test" (2): ["delete_me", "test"]
+2022-03-14T14:49:23.955+0800 I NETWORK    [conn1] connection accepted from 127.0.0.1:37560 #1 (1 connection now open)
+2022-03-14T14:49:23.956+0800 E NETWORK    [conn1] handshake error: ERROR 1759 (HY000): ssl is required when using cleartext authentication
+2022-03-14T14:49:23.956+0800 I NETWORK    [conn1] end connection 127.0.0.1:37560 (0 connections now open)
+
+openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out certificate.pem
+Generating a 2048 bit RSA private key
+..........................................................................................+++
+.........+++
+writing new private key to 'key.pem'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [XX]:CN
+State or Province Name (full name) []:Beijing
+Locality Name (eg, city) [Default City]:Beijing
+Organization Name (eg, company) [Default Company Ltd]:Yunqiic
+Organizational Unit Name (eg, section) []:Dev
+Common Name (eg, your name or your server's hostname) []:yunqiic.com
+Email Address []:1097692918@qq.com
