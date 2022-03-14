@@ -50,6 +50,8 @@ sudo docker run -p 8013:4000 \
   -v ${PWD}/cube:/cube/conf \
   -e CUBEJS_DEV_MODE=true \
   cubejs/cube
+  
+npx create-strapi-app my-project --quickstart
 ```
 
 ```shell
