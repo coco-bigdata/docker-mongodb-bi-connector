@@ -10,8 +10,6 @@ services:
       - "./mongodb/configdb:/data/configdb"
       - "./mongodb/db:/data/db"
       - /etc/localtime:/etc/localtime
-    networks:
-      - sgcc-network
     # command: mongod --auth
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root       #初始化管理员用户名和密码
