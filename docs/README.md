@@ -46,8 +46,8 @@ mysql --enable-cleartext-plugin --protocol tcp -h127.0.0.1 --port 3311 \
   --ssl-cert=certificate.pem \
   -p
   
-docker run -p 8013:4000 \
-  -v ${PWD}:/cube/conf \
+sudo docker run -p 8013:4000 \
+  -v ${PWD}/cube:/cube/conf \
   -e CUBEJS_DEV_MODE=true \
   cubejs/cube
 ```
